@@ -1,0 +1,11 @@
+# Ignore build generated files
+build
+
+# mac cruft   
+.DS_Store
+
+# screenshots dir
+screenshots
+
+# Ignore waf lock file
+.lock-waf*

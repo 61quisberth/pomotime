@@ -1,0 +1,55 @@
+{
+  "uuid": "5aa04125-f3bc-4337-a462-185245e70353",
+  "shortName": "PomoTime",
+  "longName": "Pomodoro Timer",
+  "companyName": "Jason_Q",
+  "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["aplite", "basalt", "chalk"],
+  "enableMultiJS": true,
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {
+    "dummy": 0
+  },
+  "resources": {
+    "media": [
+      {
+        "file": "images/tomato.png",
+        "name": "TOMATO",
+        "type": "bitmap"
+      },
+      {
+          "file": "images/confirm.png",
+          "name": "CONFIRM",
+          "type": "bitmap"
+      },
+      {
+          "file": "images/tick.png",
+          "name": "TICK",
+          "type": "bitmap"
+      },
+      {
+          "file": "images/cross.png",
+          "name": "CROSS",
+          "type": "bitmap"
+      },
+      {
+          "file": "images/pause.png",
+          "name": "PAUSE",
+          "type": "bitmap"
+      },
+      {
+          "file": "images/play.png",
+          "name": "PLAY",
+          "type": "bitmap"
+      },
+      {
+          "file": "images/replay.png",
+          "name": "REPLAY",
+          "type": "bitmap"
+      }
+    ]
+  }
+}
