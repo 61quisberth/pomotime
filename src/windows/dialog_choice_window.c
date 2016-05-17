@@ -36,18 +36,13 @@ static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
   tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 }
 
-// TODO: impl hiding of certains buttons and unsubs during certain events
-//static void null_click_handler(ClickRecognizerRef recognizer, void *context) {
-//  APP_LOG(APP_LOG_LEVEL_DEBUG, "doing nothing!");
-//}
-
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   tick_timer_service_unsubscribe();
-  action_bar_layer_clear_icon(s_action_bar_layer, BUTTON_ID_SELECT);
   APP_LOG(APP_LOG_LEVEL_DEBUG, "timer stopped");
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
+  tick_timer_service_unsubscribe();
   reset_timer(&timer);
   update_text(timer.min, timer.sec, FALSE);
   APP_LOG(APP_LOG_LEVEL_DEBUG, "timer restarted");
