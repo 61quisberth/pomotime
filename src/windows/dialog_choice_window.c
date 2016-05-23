@@ -77,7 +77,11 @@ static void window_load(Window *window) {
   APP_LOG(APP_LOG_LEVEL_DEBUG, "init timer min: %d, sec: %d", timer.min, timer.sec);
   update_text(timer.min, timer.sec, 0);
 
+#if defined(PBL_COLOR)
   text_layer_set_text_color(s_label_layer, GColorWhite);
+#else
+  text_layer_set_text_color(s_label_layer, GColorBlack);
+#endif
   text_layer_set_background_color(s_label_layer, GColorClear);
   text_layer_set_text_alignment(s_label_layer, GTextAlignmentCenter);
   text_layer_set_font(s_label_layer, fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD));
