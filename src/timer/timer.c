@@ -17,9 +17,6 @@ const unsigned int INIT_SEC = 0;
 #define SHORT_MIN 5 
 #define LONG_MIN 15
 
-// max allowable duration
-#define ALARM_TIME_LIMIT 100000
-
 int INIT_MIN;
 
 void set_timer_mode(int id) {
