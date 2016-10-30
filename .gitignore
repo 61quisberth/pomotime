@@ -9,3 +9,6 @@ screenshots
 
 # Ignore waf lock file
 .lock-waf*
+
+# vim cruft
+*.swp

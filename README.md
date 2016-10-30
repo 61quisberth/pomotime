@@ -1,4 +1,4 @@
-PomoTime - Tomato-based productivity timer
+## PomoTime - Tomato-based productivity timer
 
 [Appstore link](https://apps.getpebble.com/en_US/application/5738d37c771f1fc4ed000017)
 
@@ -16,5 +16,20 @@ See http://pomodorotechnique.com/ for more details on the technique.
 Tested and developed with the Pebble Time family in mind.
 Ever free and open source (MIT license). Developer is always
 welcoming comments/suggestions/patches for future versions.
+
+### Using pebble cli
+building
+  - release
+    - pebble build
+  - debug
+    - CFLAGS=-DDEBUG pebble build
+running on emulator
+  - pebble install --emulator [platform]
  
 Tags: pomodoro, pomodori, productivity, time management, timer
+
+### pebble docs
+c sdk docs
+https://developer.pebble.com/docs/c/
+newlib ansi c lib that pebble uses as its std
+https://sourceware.org/newlib/

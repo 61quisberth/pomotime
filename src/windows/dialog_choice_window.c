@@ -14,7 +14,6 @@ static Window *s_main_window;
 static TextLayer *s_label_layer;
 static BitmapLayer *s_icon_layer;
 static ActionBarLayer *s_action_bar_layer;
-static char* curr_text;
 char buffer[MAX_BUFF_LEN];
 int timer_mode;
 
@@ -24,6 +23,18 @@ pomo_t timer;
 static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
   int is_time_out = update_timer(&timer);
   update_text(timer.min, timer.sec, is_time_out);
+
+  if (is_time_out == TRUE) {
+    // 5 seconds on, 0.1 off, 5 on again
+    // NB: this pattern is interuptable via vibes_cancel()
+    static const uint32_t const segments[] = {5000, 100, 5000};
+    VibePattern pat = {
+      .durations = segments,
+      .num_segments = ARRAY_LENGTH(segments),
+    };
+    vibes_enqueue_custom_pattern(pat);
+  }
+
 }
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -33,25 +44,33 @@ static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
     set_started(&timer, TRUE);
   }
   APP_LOG(APP_LOG_LEVEL_DEBUG, "timer resumed");
+  vibes_cancel();
   tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 }
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   tick_timer_service_unsubscribe();
+  vibes_cancel();
   APP_LOG(APP_LOG_LEVEL_DEBUG, "timer stopped");
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   tick_timer_service_unsubscribe();
   reset_timer(&timer);
+  vibes_cancel();
   update_text(timer.min, timer.sec, FALSE);
   APP_LOG(APP_LOG_LEVEL_DEBUG, "timer restarted");
+}
+
+static void back_click_handler(ClickRecognizerRef recognizer, void *context) {
+  vibes_cancel();
 }
 
 static void click_config_provider(void *context) {
   window_single_click_subscribe(BUTTON_ID_SELECT, select_click_handler);
   window_single_click_subscribe(BUTTON_ID_UP, up_click_handler);
   window_single_click_subscribe(BUTTON_ID_DOWN, down_click_handler);
+  window_single_click_subscribe(BUTTON_ID_DOWN, back_click_handler);
 }
 
 static void window_load(Window *window) {
