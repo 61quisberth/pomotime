@@ -34,3 +34,10 @@ https://developer.pebble.com/docs/c/
 
 newlib ansi c lib that pebble uses as its std
 https://sourceware.org/newlib/
+
+### release notes
+  - v1.0
+    - First release of productivity timer usable with Aplite, Basalt, and Chalk platforms
+  - v2.0
+    - Replaced short-duration double pulse notifications with longer duration vibration notification
+      - similar to the notification experienced with pebble alarms
