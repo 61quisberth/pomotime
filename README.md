@@ -23,6 +23,7 @@ building
     - pebble build
   - debug
     - CFLAGS=-DDEBUG pebble build
+
 running on emulator
   - pebble install --emulator [platform]
  
